@@ -1,0 +1,41 @@
+{
+  "name": "dunajs",
+  "version": "1.0.0",
+  "description": "A simple set of javascript controls",
+  "main": "lib/duna.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "set NODE_ENV=development&& rimraf ./lib && webpack",
+    "build": "set NODE_ENV=production&& rimraf ./lib && webpack",
+    "start": "npm run server",
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandretperez/Duna.git"
+  },
+  "keywords": [
+    "duna",
+    "javascript",
+    "control",
+    "component"
+  ],
+  "author": "Alexandre Toledo Perez <alexandretperez@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexandretperez/Duna/issues"
+  },
+  "homepage": "https://github.com/alexandretperez/Duna#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1"
+  }
+}

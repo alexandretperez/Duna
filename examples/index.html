@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="semantic.min.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1>Duna.js</h1>
+        <p>Pure javascript samples, no external dependencies.</p>
+
+        <div class="ui blue secondary pointing menu">
+            <a class="item active">
+                NumericBox
+            </a>
+            <a class="item">
+                SearchBox
+            </a>
+            <a class="item">
+                MaskEdit
+            </a>
+            <a class="item">
+                Limiter
+            </a>
+        </div>
+
+        <div class="ui piled segment" data-sample="NumericBox" style="display: block">
+            <div class="ui form">
+
+                <div class="six wide field">
+                    <label for="numericBox1">Integer</label>
+                    <input type="text" id="numericBox1" style="text-align: right" />
+                </div>
+                <div class="six wide field">
+                    <label for="numericBox2">Currency</label>
+                    <input type="text" id="numericBox2" style="text-align: right" />
+                </div>
+                <div class="six wide field">
+                    <label for="numericBox3">Min: -100, Max: 100 and formats</label>
+                    <input type="text" id="numericBox3" />
+                </div>
+                <div class="field">
+                    <div class="ui button" onclick="dispose('NumericBox')">Dispose</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui piled segment" data-sample="SearchBox" style="display: none">
+            <div class="ui form">
+                <div class="field">
+                    <label for="searchBox1">Static Data</label>&nbsp;
+                    <em>For images, use the
+                        <strong>dn-src</strong> attribute instead of
+                        <strong>src</strong>
+                    </em>
+                    <input type="text" id="searchBox1" placeholder="Search for users..." />
+                </div>
+                <div class="field">
+                    <label for="searchBox2">URL</label>
+                    <div class="ui icon input">
+                        <i class="search icon"></i>
+                        <input type="text" id="searchBox2" placeholder="Search for countries..." />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="searchBox3">Custom handler (axios.js)</label>
+                    <div class="ui icon input">
+                        <i class="search icon"></i>
+                        <input type="text" id="searchBox3" placeholder="Search for users..." />
+                    </div>
+                    <small id="sbUserId"></small>
+                </div>
+                <div class="field">
+                    <div class="ui button" onclick="dispose('SearchBox')">Dispose</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui piled segment" data-sample="MaskEdit" style="display: none">
+
+            <div class="ui form">
+                <div class="four wide field">
+                    <label for="maskEdit1">Brazilian Cellphone</label>
+                    <input type="text" id="maskEdit1">
+                </div>
+                <div class="four wide field">
+                    <label for="maskEdit2">Carplate</label>
+                    <input type="text" id="maskEdit2">
+                </div>
+                <div class="four wide field">
+                    <label for="maskEdit3">DateTime</label>
+                    <input type="text" id="maskEdit3">
+                </div>
+                <div class="field">
+                    <div class="ui button" onclick="dispose('MaskEdit')">Dispose</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui piled segment" data-sample="Limiter" style="display: none">
+            <div class="ui form">
+                <div class="field">
+                    <label for="limiter1">Default Settings</label>
+                    <input type="text" id="limiter1" maxlength="50">
+                </div>
+                <div class="field">
+                    <label for="limiter2">Complete Info</label>
+                    <textarea cols="30" id="limiter2" rows="4" maxlength="200"></textarea>
+                </div>
+                <div class="field">
+                    <label for="limiter3">More Stylish</label>
+                    <textarea cols="30" id="limiter3" rows="4" maxlength="200"></textarea>
+                </div>
+                <div class="field">
+                    <div class="ui button" onclick="dispose('Limiter')">Dispose</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="duna.js"></script>
+    <script src="axios.min.js"></script>
+    <script src="vanilla.js"></script>
+
+</body>
+
+</html>
