@@ -7,14 +7,14 @@ export interface LimiterOptions extends ControlOptions {
     position?: string;
     template?: string;
     timeout?: number;
-    offsetX?: number,
-    offsetY?: number,
-    preserve?: boolean,
-    showOnFocus?: boolean,
-    onCreate?: CallbackArgs<Limiter, { tooltip: HTMLElement }>,
-    onShow?: CallbackArgs<Limiter, { tooltip: HTMLElement }>,
-    onHide?: CallbackArgs<Limiter, { tooltip: HTMLElement }>,
-    onChange?: CallbackArgs<Limiter, { tooltip: HTMLElement }>
+    offsetX?: number;
+    offsetY?: number;
+    preserve?: boolean;
+    showOnFocus?: boolean;
+    onCreate?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
+    onShow?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
+    onHide?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
+    onChange?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
 }
 
 type ElementPositionCalculation = {

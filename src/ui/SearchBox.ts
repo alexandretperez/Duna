@@ -2,28 +2,27 @@ import * as utils from '../utils';
 import * as dom from '../dom';
 import * as http from '../http';
 import ControlBase, { ControlOptions } from './ControlBase';
-import { CallbackArgs } from '../base';
+import { CallbackArgs, Callback } from '../base';
 
 export interface SearchBoxOptions extends ControlOptions {
     template: string;
     activeItemClass?: string;
-    delay?: number,
-    source?: string | any[] | PromiseLike<XMLHttpRequest>,
-    matchesTemplate?: string,
-    fieldTemplate?: string,
-    maxResults?: number,
-    minLength?: number,
-    offsetX?: number,
-    offsetY?: number,
-    dataRoot?: string,
+    delay?: number;
+    source?: string | any[] | { (value: string): PromiseLike<any> };
+    matchesTemplate?: string;
+    fieldTemplate?: string;
+    maxResults?: number;
+    minLength?: number;
+    offsetX?: number;
+    offsetY?: number;
+    dataRoot?: string;
     noRecordsTemplate?: string;
-    searchFields?: string[],
-    onBeforeRequest?: CallbackArgs<SearchBox, { element: HTMLInputElement }>,
-    onAfterRequest?: CallbackArgs<SearchBox, { element: HTMLInputElement, template: HTMLElement, data: any[] }>,
-    onResultsRender?: CallbackArgs<SearchBox, { container: HTMLElement }>,
-    onItemSelected?: CallbackArgs<SearchBox, { data: any[], text: string }>,
-    onActiveItem?: CallbackArgs<SearchBox, { data: any[], text: string }>,
-    onDataReady?: CallbackArgs<SearchBox, { data: any[] }>
+    searchFields?: string[];
+    onBeforeRequest?: Callback<SearchBox>;
+    onAfterRequest?: CallbackArgs<SearchBox, { container: HTMLElement, data: any[] }>;
+    onResultsRender?: CallbackArgs<SearchBox, { container: HTMLElement }>;
+    onItemSelected?: CallbackArgs<SearchBox, { data: any, text: string }>;
+    onActiveItem?: CallbackArgs<SearchBox, { data: any, text: string }>;
 }
 
 interface DataFilterObject {
@@ -49,8 +48,14 @@ class SearchBox extends ControlBase {
 
     constructor(element: HTMLInputElement, options: SearchBoxOptions) {
 
-        if (!options || !options.template)
-            throw new Error("SearchBox.options.template is required!");
+        if (!options)
+            throw new Error("SearchBox.options is required.");
+
+        if (!options.template)
+            throw new Error("SearchBox.options.template is required.");
+
+        if (!options.source)
+            throw new Error("SearchBox.source is required.");
 
         const defaultOptions: SearchBoxOptions = {
             template: '',
@@ -58,7 +63,7 @@ class SearchBox extends ControlBase {
             delay: 500,
             source: [],
             matchesTemplate: "<mark>${0}</mark>",
-            fieldTemplate: "${value}",
+            fieldTemplate: "${0}",
             maxResults: 10,
             minLength: 2,
             offsetX: 0,
@@ -170,12 +175,12 @@ class SearchBox extends ControlBase {
     private _promiseSourceHandler(promise: (value: string) => PromiseLike<any>) {
         window.clearTimeout(this._timer as number);
         this._timer = window.setTimeout(() => {
-            this.$invoke(this.$options.onBeforeRequest, this, { element: this.$element });
+            this.$invoke(this.$options.onBeforeRequest, this);
             promise(this.$element.value).then(response => {
                 let data = this._readData(response);
                 if (!data || !Array.isArray(data))
                     throw new Error("The data source is invalid. Check if the options.dataRoot is correct.")
-                this.$invoke(this.$options.onAfterRequest, this, { element: this.$element, template: this._container, data });
+                this.$invoke(this.$options.onAfterRequest, this, { container: this._container, data });
                 this._staticSourceHandler(data);
             }, error => console.error(error));
         }, this.$options.delay);
@@ -264,7 +269,7 @@ class SearchBox extends ControlBase {
 
     private _stringDataFilter(filter: DataFilterObject) {
         return this._objectDataFilter(Object.assign(filter, {
-            data: filter.dataSource.map(p => { return { 0: p } })
+            dataSource: filter.dataSource.map(p => { return { 0: p } })
         }));
     }
 
@@ -289,7 +294,6 @@ class SearchBox extends ControlBase {
         if (Array.isArray(this.$options.source)) {
             this._sourceHandler = this._staticSourceHandler;
             this._sourceData = this.$options.source;
-            this.$invoke(this.$options.onDataReady, this, { data: this._sourceData });
         } else if (utils.isString(this.$options.source)) {
             this._sourceHandler = this._httpSourceHandler;
         } else {
@@ -403,6 +407,9 @@ class SearchBox extends ControlBase {
     private _onInputEvent(e: KeyboardEvent) {
         let value = this.$element.value;
         if (!e.isTrusted)
+            return;
+
+        if (value.length && value.length < (this.$options.minLength as number))
             return;
 
         this._sourceHandler(this.$options.source);

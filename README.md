@@ -54,6 +54,22 @@ import SearchBox from 'dunajs/lib/ui/SearchBox';
 new SearchBox(element, options);
 ```
 
+## Build and Examples
+
+Clone the project.
+
+Run the follow command lines:
+
+```sh
+npm install
+npm run build
+npm start
+```
+
+Then navigate to *localhost:3000* to see usage examples of all available controls.
+
+If the 3000 port is already in use you can change it in *server.js* file.
+
 ## Available Controls
 
 Currently there are four available controls in the library.

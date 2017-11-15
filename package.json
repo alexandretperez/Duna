@@ -1,11 +1,11 @@
 {
   "name": "dunajs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple set of javascript controls",
   "main": "lib/duna.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "set NODE_ENV=development&& rimraf ./lib && webpack",
+    "dev": "set NODE_ENV=development&& rimraf ./lib && webpack -w",
     "build": "set NODE_ENV=production&& rimraf ./lib && webpack",
     "start": "npm run server",
     "server": "nodemon server"

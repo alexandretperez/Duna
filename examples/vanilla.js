@@ -36,6 +36,7 @@ function initializeSearchBoxes() {
                             </div>
                         </div>
                     `,
+            minLength: 1,
             noRecordsTemplate: "<div class='ui segment'><strong><em>Nothing here!</em></strong></div>",
             source: response.data,
             activeItemClass: "secondary",
@@ -58,10 +59,10 @@ function initializeSearchBoxes() {
         fieldTemplate: "${name}",
         noRecordsTemplate: "<div class='item'>No records</div>",
         onBeforeRequest: (sender, args) => {
-            duna.dom.addClass(args.element.parentElement, "loading");
+            duna.dom.addClass(sender.$element.parentElement, "loading");
         },
         onAfterRequest: (sender, args) => {
-            duna.dom.removeClass(args.element.parentElement, "loading");
+            duna.dom.removeClass(sender.$element.parentElement, "loading");
 
             // here is the perfect moment for any changes that 
             // you want make in data before it is rendering on the page
@@ -83,26 +84,64 @@ function initializeSearchBoxes() {
             return window.axios.get("/data/users/" + query);
         },
         onBeforeRequest(sender, args) {
-            duna.dom.addClass(args.element.parentElement, "loading")
+            duna.dom.addClass(sender.$element.parentElement, "loading")
         },
         onAfterRequest(sender, args) {
-            duna.dom.removeClass(args.element.parentElement, "loading")
+            duna.dom.removeClass(sender.$element.parentElement, "loading")
         },
         onItemSelected(sender, args) {
             document.querySelector("#sbUserId").innerHTML = "USER ID: " + args.data.id;
         }
     });
+
+    duna.ui.SearchBox.from("#searchBox4", {
+        template: `
+            <div class="ui vertical menu">
+                <div class="item" dn-item>\${0}</div>
+            </div>
+        `,
+        minLength: 1,
+        source: [
+            "Alligator",
+            "Ant",
+            "Bee",
+            "Bird",
+            "Cat",
+            "Cow",
+            "Dog",
+            "Dove",
+            "Eagle",
+            "Elephant",
+            "Fish",
+            "Fox",
+            "Giraffe",
+            "Gorilla",
+            "Horse",
+            "Human"
+        ]
+    });
 }
 
 function initializeMaskEdits() {
     duna.ui.MaskEdit.from("#maskEdit1", {
-        format: "(99) 9 9999-9999"
+        format: "(99) 9 9999-9999",
+        onUpdate: (sender, args) => {
+            console.log(args);
+        }
     });
     duna.ui.MaskEdit.from("#maskEdit2", {
-        format: "AAA-9999"
+        format: "AAA-9999",
+        allowPartial: true,
+        trim: true
     });
     new duna.ui.MaskEdit(document.getElementById("maskEdit3"), {
         format: "99/99/9999 99:99"
+    });
+    new duna.ui.MaskEdit(document.getElementById("maskEdit4"), {
+        format: "**** 9999",
+        translation: {
+            '*': { test: v => true }
+        }
     });
 }
 

@@ -1,3 +1,5 @@
 node_modules/
 temp.js
-lib
+lib/*
+!lib/duna.js
+!lib/duna.js.map

@@ -3,17 +3,17 @@ import { Callback } from "../base";
 const DUNA_PROPERTY = "$duna";
 
 interface HTMLElement {
-    [key: string]: any
+    [key: string]: any;
 }
 
 type ControlEventObject = {
-    type: string,
-    handler: Function,
-    element: HTMLElement
+    type: string;
+    handler: Function;
+    element: HTMLElement;
 }
 
 export interface ControlOptions {
-    onReady?: Callback<ControlBase>
+    onReady?: Callback<ControlBase>;
 }
 
 abstract class ControlBase {

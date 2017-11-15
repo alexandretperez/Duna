@@ -3,18 +3,17 @@ import ControlBase, { ControlOptions } from './ControlBase';
 import { CaretPosition, CallbackArgs } from '../base';
 
 type MaskEditTranslation = {
-    test: RegExp | { (value: string): boolean },
-    transform?: (value: string) => string
+    test: RegExp | { (value: string): boolean };
+    transform?: (value: string) => string;
 }
 
 export interface MaskEditOptions extends ControlOptions {
     format: string;
     placeholder?: string;
     allowPartial?: boolean;
-    trim?: boolean;
-    shifter?: string,
-    translation?: { [key: string]: MaskEditTranslation },
-    onUpdate?: CallbackArgs<MaskEdit, { value: string, rawValue: string }>
+    shifter?: string;
+    translation?: { [key: string]: MaskEditTranslation };
+    onUpdate?: CallbackArgs<MaskEdit, { value: string, rawValue: string }>;
 }
 
 class MaskEdit extends ControlBase {
@@ -32,7 +31,6 @@ class MaskEdit extends ControlBase {
             format: "",
             placeholder: "",
             allowPartial: false,
-            trim: true,
             shifter: '_',
             translation: {
                 '9': { test: /[0-9]/ },

@@ -4,16 +4,16 @@ import { CallbackArgs } from '../base';
 import { isNumber } from '../utils';
 
 export interface NumericBoxOptions extends ControlOptions {
-    scale?: number,
-    decimalSeparator?: string,
-    groupingSeparator?: string,
-    format?: string | string[],
-    placeholder?: string,
-    nullable?: boolean,
+    scale?: number;
+    decimalSeparator?: string;
+    groupingSeparator?: string;
+    format?: string | string[];
+    placeholder?: string;
+    nullable?: boolean;
     min?: number;
     max?: number;
-    onChange?: CallbackArgs<NumericBox, { value: number, inputValue: number }>,
-    onFormat?: CallbackArgs<NumericBox, { value: number, text: string }>
+    onChange?: CallbackArgs<NumericBox, { value: number, inputValue: number }>;
+    onFormat?: CallbackArgs<NumericBox, { value: number, text: string }>;
 }
 
 class NumericBox extends ControlBase {
