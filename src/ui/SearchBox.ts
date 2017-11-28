@@ -23,6 +23,7 @@ export interface SearchBoxOptions extends ControlOptions {
     onResultsRender?: CallbackArgs<SearchBox, { container: HTMLElement }>;
     onItemSelected?: CallbackArgs<SearchBox, { data: any, text: string }>;
     onActiveItem?: CallbackArgs<SearchBox, { data: any, text: string }>;
+    root?: string;
 }
 
 interface DataFilterObject {
@@ -42,6 +43,7 @@ class SearchBox extends ControlBase {
     private _itemTemplate: string;
     private _containerBody: HTMLElement;
     private _container: HTMLElement;
+    private _root: Element | null;
 
     $element: HTMLInputElement;
     $options: SearchBoxOptions;
@@ -77,9 +79,15 @@ class SearchBox extends ControlBase {
     }
 
     $initialize() {
+        this._setRoot();
         this._createTemplate();
         this._defineSourceHandler();
         this._registerEvents();
+    }
+
+    private _setRoot(){
+        if (this.$options.root)
+            this._root = document.querySelector(this.$options.root);
     }
 
     private _createTemplate() {
@@ -240,14 +248,16 @@ class SearchBox extends ControlBase {
             (this._containerBody.lastElementChild as any)[SEARCH_BOX_DATA_VALUE] = dataSource[i];
         }
 
-        this._container.style.display = len ? "block" : "none";
-        this._updateContainerStyle();
-        this._registerContainerEvents();
         [...this._containerBody.querySelectorAll("img[dn-src]")].forEach(img => {
             let value = img.getAttribute("dn-src");
             if (value && value.length > 0)
                 (img as HTMLImageElement).src = value;
         });
+
+        this._container.style.display = len ? "block" : "none";
+        this._updateContainerStyle();
+        this._registerContainerEvents();
+
         this.$invoke(this.$options.onResultsRender, this, { container: this._container });
     }
 
@@ -440,6 +450,12 @@ class SearchBox extends ControlBase {
         let y = bottomSize >= rect.top
             ? rect.bottom + offsetY
             : rect.top - this._container.offsetHeight - offsetY;
+
+        if (this._root){
+            let rootRect = this._root.getBoundingClientRect();
+            x -= rootRect.left;
+            y -= rootRect.top;
+        }
 
         this._container.style.top = y + 'px';
         this._container.style.left = x + 'px';

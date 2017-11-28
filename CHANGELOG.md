@@ -1,6 +1,12 @@
-# Changelog
+# Changelog <!-- markdownlint-disable MD024 -->
 
 The notable changes on this project will be documented here.
+
+## 1.0.2 (2017-11-27)
+
+### Added
+
+- SearchBox and Limiter has now the "root" option. Read more on the Wiki pages.
 
 ## 1.0.1 (2017-11-15)
 

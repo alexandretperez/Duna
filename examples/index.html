@@ -80,7 +80,26 @@
                     <input type="text" id="searchBox4" placeholder="Search for users..." />
                 </div>
                 <div class="field">
+                    <div class="ui button" onclick="popup('searchBoxPopup')">Open Popup</div>
+                </div>
+                <div class="field">
                     <div class="ui button" onclick="dispose('SearchBox')">Dispose</div>
+                </div>
+            </div>
+
+            <div class="ui modal" id="searchBoxPopup">
+                <div class="header">SearchBox Position Test</div>
+                <div class="content">
+                    Some content...
+                    <div class="ui form">
+                        <label for="searchBox5">Another SearchBox</label>
+                        <div class="field">
+                            <input type="text" id="searchBox5">
+                        </div>
+                        <div class="field">
+                            <button class="ui button">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,7 +145,26 @@
                     <textarea cols="30" id="limiter3" rows="4" maxlength="200"></textarea>
                 </div>
                 <div class="field">
+                    <div class="ui button" onclick="popup('limiterPopup')">Open Popup</div>
+                </div>
+                <div class="field">
                     <div class="ui button" onclick="dispose('Limiter')">Dispose</div>
+                </div>
+            </div>
+
+            <div class="ui modal" id="limiterPopup">
+                <div class="header">Limiter Position Test</div>
+                <div class="content">
+                    Some content...
+                    <div class="ui form">
+                        <label for="searchBox5">Another Limiter</label>
+                        <div class="field">
+                            <input type="text" id="limiter4" maxlength="50">
+                        </div>
+                        <div class="field">
+                            <button class="ui button">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,6 +174,11 @@
     <script src="duna.js"></script>
     <script src="axios.min.js"></script>
     <script src="vanilla.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/transition.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/dimmer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/modal.min.js"></script>
 
 </body>
 

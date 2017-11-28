@@ -42,10 +42,7 @@ function initializeSearchBoxes() {
             activeItemClass: "secondary",
             fieldTemplate: "${name}",
             matchesTemplate: "<span class='ui label yellow'>${0}</span>",
-            searchFields: ["name", "company"],
-            onRender: (sender, args) => {
-                console.log(args);
-            }
+            searchFields: ["name", "company"]
         });
     });
 
@@ -94,13 +91,14 @@ function initializeSearchBoxes() {
         }
     });
 
-    duna.ui.SearchBox.from("#searchBox4", {
+    var sharedConfig = {
         template: `
             <div class="ui vertical menu">
                 <div class="item" dn-item>\${0}</div>
             </div>
         `,
         minLength: 1,
+        noRecordsTemplate: "<div class='item'>No records</div>",
         source: [
             "Alligator",
             "Ant",
@@ -119,15 +117,21 @@ function initializeSearchBoxes() {
             "Horse",
             "Human"
         ]
+    };
+
+    duna.ui.SearchBox.from("#searchBox4", sharedConfig);
+    duna.ui.SearchBox.from("#searchBox5", Object.assign(sharedConfig, {
+        root: "#searchBoxPopup"
+    }));
+
+    document.querySelector("#searchBoxPopup .ui.button").addEventListener("click", function () {
+        document.querySelector("#searchBoxPopup").style.display = "none";
     });
 }
 
 function initializeMaskEdits() {
     duna.ui.MaskEdit.from("#maskEdit1", {
-        format: "(99) 9 9999-9999",
-        onUpdate: (sender, args) => {
-            console.log(args);
-        }
+        format: "(99) 9 9999-9999"
     });
     duna.ui.MaskEdit.from("#maskEdit2", {
         format: "AAA-9999",
@@ -171,6 +175,13 @@ function initializeLimiters() {
             args.tooltip.className = "ui green label animating transition out fly down";
         }
     });
+    duna.ui.Limiter.from("#limiter4", {
+        showOnFocus: true,
+        root: "#limiterPopup"
+    });
+    document.querySelector("#limiterPopup .ui.button").addEventListener("click", function(){
+        document.querySelector("#limiterPopup").style.display = "none";
+    });
 }
 
 function initialize() {
@@ -195,6 +206,16 @@ function changeTab(item) {
             ? "block"
             : "none";
     }, this);
+}
+
+function popup(arg) {
+    duna.dom.setStyle(document.getElementById(arg), {
+        display: "block",
+        position: "fixed",
+        left: "100px",
+        top: "120px",
+        margin: "0px"
+    });
 }
 
 function dispose(controlName) {

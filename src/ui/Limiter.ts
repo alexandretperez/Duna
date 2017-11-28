@@ -11,6 +11,7 @@ export interface LimiterOptions extends ControlOptions {
     offsetY?: number;
     preserve?: boolean;
     showOnFocus?: boolean;
+    root?: string;
     onCreate?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
     onShow?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
     onHide?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
@@ -27,6 +28,7 @@ class Limiter extends ControlBase {
     _templateContent: string;
     _tooltip: HTMLElement | null;
     _timer: number | null;
+    _root: Element | null;
     $element: HTMLInputElement | HTMLTextAreaElement;
     $options: LimiterOptions;
 
@@ -45,6 +47,7 @@ class Limiter extends ControlBase {
     }
 
     $initialize() {
+        this._setRoot();
         this._registerEvents();
         this._configPosition();
         this._timer = null;
@@ -56,6 +59,11 @@ class Limiter extends ControlBase {
 
         window.removeEventListener("scroll", this._onWindowScrollOrResize, false);
         super.dispose();
+    }
+
+    private _setRoot() {
+        if (this.$options.root)
+            this._root = document.querySelector(this.$options.root);
     }
 
     private _destroy() {
@@ -150,6 +158,12 @@ class Limiter extends ControlBase {
 
         x += this.$options.offsetX as number;
         y += this.$options.offsetY as number;
+
+        if (this._root) {
+            let rootRect = this._root.getBoundingClientRect();
+            y -= rootRect.top;
+            x -= rootRect.left;
+        }
 
         tooltip.style.left = `${x}px`;
         tooltip.style.top = `${y}px`;

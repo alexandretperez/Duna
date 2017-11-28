@@ -1,6 +1,6 @@
 {
   "name": "dunajs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple set of javascript controls",
   "main": "lib/duna.js",
   "scripts": {
