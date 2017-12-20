@@ -1,6 +1,6 @@
 # Duna.js <!-- markdownlint-disable MD033 -->
 
-Duna offers a small collection of javascript controls with no dependency to any other library.
+Duna offers a small collection of javascript controls.
 
 ## Installation
 
