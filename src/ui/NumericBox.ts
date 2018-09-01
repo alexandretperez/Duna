@@ -18,8 +18,9 @@ export interface NumericBoxOptions extends ControlOptions {
 
 class NumericBox extends ControlBase {
 
-    $element: HTMLInputElement;
-    $options: NumericBoxOptions;
+    $element!: HTMLInputElement;
+    $options!: NumericBoxOptions;
+    private _dataFormat!: string[];
 
     constructor(element: HTMLInputElement, options: NumericBoxOptions) {
 
@@ -33,7 +34,6 @@ class NumericBox extends ControlBase {
         }
 
         super(element, utils.merge(defaultOptions, options));
-
     }
 
     $initialize(): void {
@@ -128,8 +128,6 @@ class NumericBox extends ControlBase {
 
         this._dataFormat = format as string[];
     }
-
-    private _dataFormat: string[];
 
     private _registerEvents(): void {
         this.$addEvent("focus", this._onFocusEvent);

@@ -5,6 +5,19 @@ var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const configs = [
     {
         entry: {
+            // bundle
+            duna: "./src/index.ts"
+        },
+        output: {
+            path: path.join(__dirname, "lib"),
+            filename: "[name].js",
+            library: "duna",
+            libraryTarget: "umd",
+            umdNamedDefine: true
+        }
+    },
+    {
+        entry: {
             // utilities
             utils: "./src/utils.ts",
             dom: "./src/dom.ts",
@@ -22,47 +35,52 @@ const configs = [
             libraryTarget: "umd",
             umdNamedDefine: true
         }
-    },
-    {
-        entry: {
-            // bundle
-            duna: "./src/index.ts"
-        },
-        output: {
-            path: path.join(__dirname, "lib"),
-            filename: "[name].js",
-            library: "duna",
-            libraryTarget: "umd",
-            umdNamedDefine: true
-        }
     }
-]
+];
 
 
-configs.forEach((cfg, index) => {
+configs.forEach(cfg => {
     Object.assign(cfg, {
         devtool: "cheap-eval-source-map",
+        mode: "development",
+        devServer: {
+            contentBase: __dirname + "\\examples",
+            port: 3000
+        },
         resolve: {
             extensions: [".ts", ".js"]
         },
         module: {
-            rules: [
-                { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: { compact: false } },
-                { test: /\.tsx?$/, loader: "ts-loader" }
+            rules: [{
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader",
+                    query: {
+                        compact: false
+                    }
+                },
+                {
+                    test: /\.tsx?$/,
+                    loader: "ts-loader"
+                }
             ]
         }
     });
 
     if (process.env.NODE_ENV === 'production') {
         cfg.devtool = "source-map";
-        cfg.plugins = [new UglifyJsPlugin({
-            sourceMap: true,
-            uglifyOptions: {
-                mangle: {
-                    keep_classnames: true
-                }
-            }
-        })];
+        cfg.optimization = {
+            minimizer: [
+                new UglifyJsPlugin({
+                    sourceMap: true,
+                    uglifyOptions: {
+                        mangle: {
+                            keep_classnames: true
+                        }
+                    }
+                })
+            ]
+        };
     }
 });
 

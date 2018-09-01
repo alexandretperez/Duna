@@ -78,6 +78,7 @@ function initializeSearchBoxes() {
         fieldTemplate: "${name}, age: ${age}",
         noRecordsTemplate: "<div class='item'>No records</div>",
         source: (query) => {
+            console.log(query);
             return window.axios.get("/data/users/" + query);
         },
         onBeforeRequest(sender, args) {

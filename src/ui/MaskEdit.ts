@@ -17,14 +17,14 @@ export interface MaskEditOptions extends ControlOptions {
 }
 
 class MaskEdit extends ControlBase {
-    _maskWithShifter: string;
-    _originalMaxLength: number;
-    _currentFormat: string;
-    _translations: { [key: string]: { test: (value: string) => boolean, transform?: (value: string) => string } };
-    _formats: string[];
+    _maskWithShifter!: string;
+    _originalMaxLength!: number;
+    _currentFormat!: string;
+    _translations!: { [key: string]: { test: (value: string) => boolean, transform?: (value: string) => string } };
+    _formats!: string[];
 
-    $element: HTMLInputElement;
-    $options: MaskEditOptions;
+    $element!: HTMLInputElement;
+    $options!: MaskEditOptions;
 
     constructor(element: HTMLInputElement, options: MaskEditOptions) {
         let defaultOptions: MaskEditOptions = {
@@ -124,7 +124,7 @@ class MaskEdit extends ControlBase {
     private _replace(e: KeyboardEvent) {
         e.preventDefault();
 
-        let index = this.$element.selectionStart;
+        let index = this.$element.selectionStart || 0;
         let buffer = this.$element.value.split('');
         buffer[index] = e.key;
 
@@ -193,7 +193,16 @@ class MaskEdit extends ControlBase {
 
     private _onBlurEvent() {
         let value = this.$element.value;
-        if (value.indexOf(this.$options.shifter as string) >= 0) {
+        let hasShifter = value.indexOf(this.$options.shifter as string) >= 0;
+        if (hasShifter) {
+            if (this.$options.allowPartial) {
+                value = value.replace(new RegExp(`\\${this.$options.shifter}*$`, ''), '');
+                if (value.indexOf(this.$options.shifter as string) === -1) {
+                    this._setValue(value);
+                    return;
+                }
+            }
+
             this._setValue('');
             return;
         }
@@ -210,6 +219,10 @@ class MaskEdit extends ControlBase {
     }
 
     private _onKeyDownEvent(e: KeyboardEvent) {
+
+        if (/^[cvx]$/i.test(e.key) && e.ctrlKey)
+            return;
+
         let caret = this._getCaretPosition();
         if (e.key.length === 1) {
             if (this.$element.value[caret.start])
@@ -300,8 +313,8 @@ class MaskEdit extends ControlBase {
     }
 
     private _getCaretPosition(): CaretPosition {
-        let start = this.$element.selectionStart;
-        let end = this.$element.selectionEnd;
+        let start = this.$element.selectionStart || 0;
+        let end = this.$element.selectionEnd || 0;
         return {
             start,
             end,

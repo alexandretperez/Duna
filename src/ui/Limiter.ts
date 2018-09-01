@@ -24,13 +24,13 @@ type ElementPositionCalculation = {
 }
 
 class Limiter extends ControlBase {
-    _position: ElementPositionCalculation;
-    _templateContent: string;
-    _tooltip: HTMLElement | null;
-    _timer: number | null;
-    _root: Element | null;
-    $element: HTMLInputElement | HTMLTextAreaElement;
-    $options: LimiterOptions;
+    _position!: ElementPositionCalculation;
+    _templateContent!: string;
+    _tooltip!: HTMLElement | null;
+    _timer!: number | null;
+    _root!: Element | null;
+    $element!: HTMLInputElement | HTMLTextAreaElement;
+    $options!: LimiterOptions;
 
     constructor(element: HTMLInputElement | HTMLTextAreaElement, options: LimiterOptions) {
         let defaultOptions = {

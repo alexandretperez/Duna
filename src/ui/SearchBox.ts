@@ -34,19 +34,18 @@ interface DataFilterObject {
 
 const SEARCH_BOX_DATA_VALUE = "dunaSearchBoxDataValue";
 class SearchBox extends ControlBase {
-    _sourceData: any[];
-    private _sourceHandler: (source: any) => void;
-    private _timer: number | null;
-    private _searchFields: string[];
-    private _dataFilter: (filter: any) => any;
-    private _noRecords: boolean;
-    private _itemTemplate: string;
-    private _containerBody: HTMLElement;
-    private _container: HTMLElement;
-    private _root: Element | null;
+    private _sourceHandler!: (source: any) => void;
+    private _timer!: number | null;
+    private _searchFields!: string[];
+    private _dataFilter!: (filter: any) => any;
+    private _noRecords!: boolean;
+    private _itemTemplate!: string;
+    private _containerBody!: HTMLElement;
+    private _container!: HTMLElement;
+    private _root!: Element | null;
 
-    $element: HTMLInputElement;
-    $options: SearchBoxOptions;
+    $element!: HTMLInputElement;
+    $options!: SearchBoxOptions;
 
     constructor(element: HTMLInputElement, options: SearchBoxOptions) {
 
@@ -85,7 +84,7 @@ class SearchBox extends ControlBase {
         this._registerEvents();
     }
 
-    private _setRoot(){
+    private _setRoot() {
         if (this.$options.root)
             this._root = document.querySelector(this.$options.root);
     }
@@ -184,7 +183,7 @@ class SearchBox extends ControlBase {
         window.clearTimeout(this._timer as number);
         this._timer = window.setTimeout(() => {
             this.$invoke(this.$options.onBeforeRequest, this);
-            promise(this.$element.value).then(response => {
+            promise(encodeURIComponent(this.$element.value)).then(response => {
                 let data = this._readData(response);
                 if (!data || !Array.isArray(data))
                     throw new Error("The data source is invalid. Check if the options.dataRoot is correct.")
@@ -303,7 +302,6 @@ class SearchBox extends ControlBase {
     private _defineSourceHandler() {
         if (Array.isArray(this.$options.source)) {
             this._sourceHandler = this._staticSourceHandler;
-            this._sourceData = this.$options.source;
         } else if (utils.isString(this.$options.source)) {
             this._sourceHandler = this._httpSourceHandler;
         } else {
@@ -451,7 +449,7 @@ class SearchBox extends ControlBase {
             ? rect.bottom + offsetY
             : rect.top - this._container.offsetHeight - offsetY;
 
-        if (this._root){
+        if (this._root) {
             let rootRect = this._root.getBoundingClientRect();
             x -= rootRect.left;
             y -= rootRect.top;

@@ -34,23 +34,23 @@ app.get("/data/:type/:query?", (req, res) => {
             handler = (q) => {
                 if (q) {
                     source = countriesDataSource.filter(p => {
-                        return p.name.toLowerCase().indexOf(q) > -1 || p.alpha3Code.toLowerCase() === q
-                    })
+                        return p.name.toLowerCase().indexOf(q) > -1 || p.alpha3Code.toLowerCase() === q;
+                    });
                 }
                 else
                     source = countriesDataSource;
-            }
+            };
             break;
 
         case "users":
             handler = (q) => {
                 if (q) {
                     source = usersDataSource.filter(p => {
-                        return p.name.toLowerCase().indexOf(q) > -1 || p.company.toLowerCase().indexOf(q) > -1
-                    })
+                        return p.name.toLowerCase().indexOf(q) > -1 || p.company.toLowerCase().indexOf(q) > -1;
+                    });
                 } else
                     source = usersDataSource;
-            }
+            };
     }
 
     var query = (req.params.query || '').toLowerCase();

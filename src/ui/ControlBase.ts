@@ -40,7 +40,7 @@ abstract class ControlBase {
         this._eventsCollection.forEach(e => e.element.removeEventListener(e.type, e.handler, false));
         this._eventsCollection = [];
         for (let prop in this)
-            this[prop] = undefined;
+            delete this[prop];
     }
 
     private _ensureUniqueInstancePerType() {
