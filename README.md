@@ -7,7 +7,7 @@ Duna offers a small collection of javascript controls.
 In-browser usage:
 
 ```html
-<script src="duna.js" />
+<script src="duna.js"></script>
 ```
 
 Through NPM:
@@ -31,7 +31,7 @@ duna.ui.[ControlName].from(selector, options);
 In-browser usage:
 
 ```html
-<script src="duna.js" />
+<script src="duna.js"></script>
 <script>
     new duna.ui.NumericBox(document.getElementById("some"), {...})
 </script>
