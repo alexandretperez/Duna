@@ -7,9 +7,9 @@ import SearchBox from './ui/SearchBox';
 import Limiter from './ui/Limiter';
 import MaskEdit from './ui/MaskEdit';
 
-let duna = {};
+let _duna = {};
 
-Object.defineProperty(duna, "ui", {
+Object.defineProperty(_duna, "ui", {
     get() {
         return {
             NumericBox,
@@ -20,9 +20,9 @@ Object.defineProperty(duna, "ui", {
     }
 });
 
-Object.defineProperty(duna, "http", { get() { return http; } })
-Object.defineProperty(duna, "dom", { get() { return dom; } })
-Object.defineProperty(duna, "utils", { get() { return utils; } })
-Object.defineProperty(duna, "version", { get() { return version; } })
+Object.defineProperty(_duna, "http", { get() { return http; } })
+Object.defineProperty(_duna, "dom", { get() { return dom; } })
+Object.defineProperty(_duna, "utils", { get() { return utils; } })
+Object.defineProperty(_duna, "version", { get() { return version; } })
 
-export = duna;
+export default _duna;

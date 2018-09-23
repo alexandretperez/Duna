@@ -2,6 +2,39 @@
 
 The notable changes on this project will be documented here.
 
+## 1.1.0 (2018-09-22)
+
+Changes to the build process.
+
+The module paths was simplified to a more convenient way.
+
+### Changed
+
+- Now the features are imported as '**dunajs/**...' instead of '**dunajs/lib/**...'.
+
+
+```javascript
+// version <= 1.0.3
+import * as http from 'dunajs/lib/http';
+import NumericBox from 'dunajs/lib/ui/NumericBox';
+
+// now
+import * as http from 'dunajs/http';
+import NumericBox from 'dunajs/ui/NumericBox';
+```
+
+
+## 1.0.3 (2018-09-01)
+
+### Changed
+- Typescript was updated to most recent version.
+
+### Added
+- MaskEdit's now supports Ctrl+C, Ctrl+X and Ctrl+V.
+
+### Fixed 
+- SearchBox's bug when the search criteria has a escape char '\\'
+
 ## 1.0.2 (2017-11-27)
 
 ### Added

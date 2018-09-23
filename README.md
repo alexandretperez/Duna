@@ -1,4 +1,4 @@
-# Duna.js <!-- markdownlint-disable MD033 -->
+# Duna.js
 
 Duna offers a small collection of javascript controls.
 
@@ -13,7 +13,7 @@ In-browser usage:
 Through NPM:
 
 ```javascript
-npm install dunajs --save-dev
+npm install dunajs
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ duna.ui.Limiter.from("[maxlength]", { ... })
 It's also possible to load only what do you need:
 
 ```javascript
-import SearchBox from 'dunajs/lib/ui/SearchBox';
+import SearchBox from 'dunajs/ui/SearchBox';
 
 new SearchBox(element, options);
 ```
@@ -62,13 +62,8 @@ Run the follow command lines:
 
 ```sh
 npm install
-npm run build
-npm start
+npm run dev
 ```
-
-Then navigate to *localhost:3000* to see usage examples of all available controls.
-
-If the 3000 port is already in use you can change it in *server.js* file.
 
 ## Available Controls
 
@@ -81,7 +76,7 @@ Currently there are four available controls in the library.
 
 ## Documentation
 
-Check out the wiki pages.
+Check out the [wiki pages](https://github.com/alexandretperez/Duna/wiki).
 
 ## Credits
 

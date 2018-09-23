@@ -1,61 +1,50 @@
 const express = require("express");
+const open = require("open");
 const fs = require("fs");
-const app = express();
+
+var countriesDB = JSON.parse(fs.readFileSync("examples/db/countries.json", "utf-8"));
+var usersDB = JSON.parse(fs.readFileSync("examples/db/users.json", "utf-8"));
+
 const port = 3000;
+const localhost = "http://localhost:" + port;
 
-var countriesDataSource = JSON.parse(fs.readFileSync("examples/db/countries.json", "utf-8"));
-var usersDataSource = JSON.parse(fs.readFileSync("examples/db/users.json", "utf-8"));
-
-app.listen(port, () => {
-    console.log("Listening localhost:" + port);
+const server = express();
+server.listen(port, () => {
+    console.log("Listening " + localhost);
+    open(localhost);
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(example("index.html"));
-});
+server
+    // statics
+    .use(express.static("dist"))
+    .use(express.static("examples"))
 
-app.use(express.static("lib"));
-app.use(express.static("examples"));
-app.use(express.static("examples/assets"));
-app.use("/assets/imgs", express.static("examples/assets/imgs"));
-app.use("/assets/fonts", express.static("examples/assets/fonts"));
+    // routes
+    .get("/", (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
+    .get("/data/:type/:query?", (req, res) => {
+        const query = req.params.query;
+        switch (req.params.type) {
+            case "countries":
+                sendCountries(query, res);
+                break;
+            case "users":
+                sendUsers(query, res);
+                break;
+        }
+    });
 
-
-function example(fileName) {
-    return __dirname + "/examples/" + fileName;
+function sendCountries(query, res) {
+    res.json(
+        query ? countriesDB.filter(p => {
+            return p.name.toLowerCase().indexOf(query) > -1 || p.alpha3Code.toLowerCase() === query;
+        }) : countriesDB
+    );
 }
 
-app.get("/data/:type/:query?", (req, res) => {
-    console.log(req.params);
-    var handler;
-    var source;
-    switch (req.params.type) {
-        case "countries":
-            handler = (q) => {
-                if (q) {
-                    source = countriesDataSource.filter(p => {
-                        return p.name.toLowerCase().indexOf(q) > -1 || p.alpha3Code.toLowerCase() === q;
-                    });
-                }
-                else
-                    source = countriesDataSource;
-            };
-            break;
-
-        case "users":
-            handler = (q) => {
-                if (q) {
-                    source = usersDataSource.filter(p => {
-                        return p.name.toLowerCase().indexOf(q) > -1 || p.company.toLowerCase().indexOf(q) > -1;
-                    });
-                } else
-                    source = usersDataSource;
-            };
-    }
-
-    var query = (req.params.query || '').toLowerCase();
-    if (handler)
-        handler(query);
-
-    res.json(source);
-});
+function sendUsers(query, res) {
+    res.json(
+        query ? usersDB.filter(p => {
+            return p.name.toLowerCase().indexOf(query) > -1 || p.company.toLowerCase().indexOf(query) > -1;
+        }) : usersDB
+    );
+}

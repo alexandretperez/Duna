@@ -1,6 +1,6 @@
 [
     {
-      "picture": "assets/imgs/f5.jpg",
+      "picture": "imgs/f5.jpg",
       "age": 23,
       "email": "vonda.england@joviold.com",
       "company": "Joviold",
@@ -8,7 +8,7 @@
       "id": "9873d876-d6db-447c-98a7-3bf146de6aec"
     },
     {
-      "picture": "assets/imgs/f6.jpg",
+      "picture": "imgs/f6.jpg",
       "age": 22,
       "email": "margarita.whitehead@musanpoly.com",
       "company": "Musanpoly",
@@ -16,7 +16,7 @@
       "id": "59887f0e-2fa4-416a-aa0f-e736243ec281"
     },
     {
-      "picture": "assets/imgs/f3.jpg",
+      "picture": "imgs/f3.jpg",
       "age": 42,
       "email": "carmen.dillon@plasmos.com",
       "company": "Plasmos",
@@ -24,7 +24,7 @@
       "id": "44391dee-0c40-4229-b41e-69d6b6183304"
     },
     {
-      "picture": "assets/imgs/f3.jpg",
+      "picture": "imgs/f3.jpg",
       "age": 38,
       "email": "michelle.mcdonald@kangle.com",
       "company": "Kangle",
@@ -32,7 +32,7 @@
       "id": "91e399ab-0147-45c9-a8fd-7eabd6fe71e3"
     },
     {
-      "picture": "assets/imgs/f1.jpg",
+      "picture": "imgs/f1.jpg",
       "age": 29,
       "email": "carissa.tucker@zeam.com",
       "company": "Zeam",
@@ -40,7 +40,7 @@
       "id": "2368af89-9233-4ab5-92c9-c15e93e32fc6"
     },
     {
-      "picture": "assets/imgs/f8.jpg",
+      "picture": "imgs/f8.jpg",
       "age": 31,
       "email": "melinda.solomon@conjurica.com",
       "company": "Conjurica",
@@ -48,7 +48,7 @@
       "id": "137cd553-f566-4fc7-8b64-62b2f893cbea"
     },
     {
-      "picture": "assets/imgs/f9.jpg",
+      "picture": "imgs/f9.jpg",
       "age": 39,
       "email": "pansy.tanner@xsports.com",
       "company": "Xsports",
@@ -56,7 +56,7 @@
       "id": "fee91023-f317-4de6-90f8-ccc42e6378e9"
     },
     {
-      "picture": "assets/imgs/f5.jpg",
+      "picture": "imgs/f5.jpg",
       "age": 21,
       "email": "belinda.allison@isosphere.com",
       "company": "Isosphere",
@@ -64,7 +64,7 @@
       "id": "1ffc691e-a8b4-46fb-b401-6fa876233d2d"
     },
     {
-      "picture": "assets/imgs/f4.jpg",
+      "picture": "imgs/f4.jpg",
       "age": 36,
       "email": "jean.cooper@darwinium.com",
       "company": "Darwinium",
@@ -72,7 +72,7 @@
       "id": "b35ffbea-a2a4-4570-82b1-99db2d054f2b"
     },
     {
-      "picture": "assets/imgs/f3.jpg",
+      "picture": "imgs/f3.jpg",
       "age": 29,
       "email": "joanna.hughes@comvey.com",
       "company": "Comvey",
@@ -80,7 +80,7 @@
       "id": "d55fadfc-6eb5-44d5-b674-68b2c237d648"
     },
     {
-      "picture": "assets/imgs/f1.jpg",
+      "picture": "imgs/f1.jpg",
       "age": 50,
       "email": "shawn.rodriguez@rotodyne.com",
       "company": "Rotodyne",
@@ -88,7 +88,7 @@
       "id": "4e67f90a-d8e7-4720-ac61-07e7efe89ac5"
     },
     {
-      "picture": "assets/imgs/f4.jpg",
+      "picture": "imgs/f4.jpg",
       "age": 39,
       "email": "rhea.carr@endicil.com",
       "company": "Endicil",
@@ -96,7 +96,7 @@
       "id": "96337e91-582f-4c30-b601-db255c6b9c4a"
     },
     {
-      "picture": "assets/imgs/f1.jpg",
+      "picture": "imgs/f1.jpg",
       "age": 47,
       "email": "leila.fields@apexia.com",
       "company": "Apexia",
@@ -104,7 +104,7 @@
       "id": "0499d657-e0fb-46ae-9d50-fd0f52231288"
     },
     {
-      "picture": "assets/imgs/f6.jpg",
+      "picture": "imgs/f6.jpg",
       "age": 39,
       "email": "gabriela.richard@lumbrex.com",
       "company": "Lumbrex",
@@ -112,7 +112,7 @@
       "id": "0e31c902-9060-4410-a97d-899093127701"
     },
     {
-      "picture": "assets/imgs/f7.jpg",
+      "picture": "imgs/f7.jpg",
       "age": 32,
       "email": "adela.herring@zillar.com",
       "company": "Zillar",
@@ -120,7 +120,7 @@
       "id": "69ff1403-7bcc-457d-aa19-d8c8a476ded0"
     },
     {
-      "picture": "assets/imgs/f2.jpg",
+      "picture": "imgs/f2.jpg",
       "age": 48,
       "email": "rena.reyes@gazak.com",
       "company": "Gazak",
@@ -128,7 +128,7 @@
       "id": "138e8a04-85af-472c-8c78-2703479d2b44"
     },
     {
-      "picture": "assets/imgs/f9.jpg",
+      "picture": "imgs/f9.jpg",
       "age": 32,
       "email": "emma.wooten@zappix.com",
       "company": "Zappix",
@@ -136,7 +136,7 @@
       "id": "bfa25f87-6296-463b-ae9e-a2396761d15c"
     },
     {
-      "picture": "assets/imgs/f9.jpg",
+      "picture": "imgs/f9.jpg",
       "age": 30,
       "email": "terry.meyers@entogrok.com",
       "company": "Entogrok",
@@ -144,7 +144,7 @@
       "id": "c1151e24-1de6-425a-bf16-95e039f32b71"
     },
     {
-      "picture": "assets/imgs/f4.jpg",
+      "picture": "imgs/f4.jpg",
       "age": 44,
       "email": "shelley.logan@hyplex.com",
       "company": "Hyplex",
@@ -152,7 +152,7 @@
       "id": "058bb25b-73a6-49e3-b86e-d982728dea92"
     },
     {
-      "picture": "assets/imgs/f8.jpg",
+      "picture": "imgs/f8.jpg",
       "age": 38,
       "email": "rosario.grimes@chorizon.com",
       "company": "Chorizon",
@@ -160,7 +160,7 @@
       "id": "72bb385b-a63d-4bd0-b52f-612d8fef88e7"
     },
     {
-      "picture": "assets/imgs/f9.jpg",
+      "picture": "imgs/f9.jpg",
       "age": 35,
       "email": "chandra.bowers@ecosys.com",
       "company": "Ecosys",
@@ -168,7 +168,7 @@
       "id": "2252320f-8a10-48c3-8fc0-690c002c048a"
     },
     {
-      "picture": "assets/imgs/f3.jpg",
+      "picture": "imgs/f3.jpg",
       "age": 40,
       "email": "saundra.campos@automon.com",
       "company": "Automon",
@@ -176,7 +176,7 @@
       "id": "a9957785-80fd-4f77-a047-d0383ca3e6a2"
     },
     {
-      "picture": "assets/imgs/f2.jpg",
+      "picture": "imgs/f2.jpg",
       "age": 28,
       "email": "stephanie.rasmussen@cuizine.com",
       "company": "Cuizine",
@@ -184,7 +184,7 @@
       "id": "82ffb0aa-a5be-411c-adbd-c5c16589e654"
     },
     {
-      "picture": "assets/imgs/f4.jpg",
+      "picture": "imgs/f4.jpg",
       "age": 31,
       "email": "marcella.giles@empirica.com",
       "company": "Empirica",
@@ -192,7 +192,7 @@
       "id": "7e52ece2-48c9-4e47-9e4d-2d0348068250"
     },
     {
-      "picture": "assets/imgs/f5.jpg",
+      "picture": "imgs/f5.jpg",
       "age": 23,
       "email": "felecia.baxter@enervate.com",
       "company": "Enervate",
@@ -200,7 +200,7 @@
       "id": "54a182a2-5bd7-4e56-b8d5-91849ac51b9c"
     },
     {
-      "picture": "assets/imgs/f1.jpg",
+      "picture": "imgs/f1.jpg",
       "age": 46,
       "email": "maricela.church@zytrex.com",
       "company": "Zytrex",
@@ -208,7 +208,7 @@
       "id": "9779183b-e900-49a5-a74c-4aa713c28fe5"
     },
     {
-      "picture": "assets/imgs/f8.jpg",
+      "picture": "imgs/f8.jpg",
       "age": 39,
       "email": "alyssa.bird@vidto.com",
       "company": "Vidto",
@@ -216,7 +216,7 @@
       "id": "ceb6a284-20eb-41dc-8458-67795c8bd7e0"
     },
     {
-      "picture": "assets/imgs/f8.jpg",
+      "picture": "imgs/f8.jpg",
       "age": 47,
       "email": "alana.gomez@mitroc.com",
       "company": "Mitroc",
@@ -224,7 +224,7 @@
       "id": "4a9c2f72-6d6d-4ff6-9ce0-fb2dc609f1af"
     },
     {
-      "picture": "assets/imgs/f6.jpg",
+      "picture": "imgs/f6.jpg",
       "age": 50,
       "email": "kate.hubbard@viasia.com",
       "company": "Viasia",
@@ -232,7 +232,7 @@
       "id": "b191e4cf-2f55-4493-a0b8-14f3ba16c1a7"
     },
     {
-      "picture": "assets/imgs/f9.jpg",
+      "picture": "imgs/f9.jpg",
       "age": 47,
       "email": "dana.gilbert@netropic.com",
       "company": "Netropic",

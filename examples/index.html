@@ -5,181 +5,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="semantic.min.css" />
-    <title>Document</title>
+    <title>Duna.js</title>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/css/uikit.min.css" />
+    <style type="text/css">
+        ul.uk-nav.uk-nav-default li.active a {
+            color: #333;
+            border-left: 2px solid #ccc;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="ui container">
-        <h1>Duna.js</h1>
-        <p>Pure javascript samples, no external dependencies.</p>
 
-        <div class="ui blue secondary pointing menu">
-            <a class="item active">
-                NumericBox
-            </a>
-            <a class="item">
-                SearchBox
-            </a>
-            <a class="item">
-                MaskEdit
-            </a>
-            <a class="item">
-                Limiter
-            </a>
+    <div class="uk-container">
+
+        <div style="text-align: center">
+            <h1>Duna.js</h1>
         </div>
 
-        <div class="ui piled segment" data-sample="NumericBox" style="display: block">
-            <div class="ui form">
+        <ul uk-tab class="uk-flex-center">
+            <li class="uk-active"><a href="">NumericBox</a></li>
+            <li><a href="">SearchBox</a></li>
+            <li><a href="">MaskEdit</a></li>
+            <li><a href="">Limiter</a></li>
+        </ul>
 
-                <div class="six wide field">
-                    <label for="numericBox1">Integer</label>
-                    <input type="text" id="numericBox1" style="text-align: right" />
-                </div>
-                <div class="six wide field">
-                    <label for="numericBox2">Currency</label>
-                    <input type="text" id="numericBox2" style="text-align: right" />
-                </div>
-                <div class="six wide field">
-                    <label for="numericBox3">Min: -100, Max: 100 and formats</label>
-                    <input type="text" id="numericBox3" />
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="dispose('NumericBox')">Dispose</div>
-                </div>
-            </div>
-        </div>
+        <div class="uk-switcher">
 
-        <div class="ui piled segment" data-sample="SearchBox" style="display: none">
-            <div class="ui form">
-                <div class="field">
-                    <label for="searchBox1">Static Data</label>&nbsp;
-                    <em>For images, use the
-                        <strong>dn-src</strong> attribute instead of
-                        <strong>src</strong>
-                    </em>
-                    <input type="text" id="searchBox1" placeholder="Search for users..." />
-                </div>
-                <div class="field">
-                    <label for="searchBox2">URL</label>
-                    <div class="ui icon input">
-                        <i class="search icon"></i>
-                        <input type="text" id="searchBox2" placeholder="Search for countries..." />
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="searchBox3">Custom handler (axios.js)</label>
-                    <div class="ui icon input">
-                        <i class="search icon"></i>
-                        <input type="text" id="searchBox3" placeholder="Search for users..." />
-                    </div>
-                    <small id="sbUserId"></small>
-                </div>
-                <div class="field">
-                    <label for="searchBox4">Static Data with simple string array</label>
-                    <input type="text" id="searchBox4" placeholder="Search for users..." />
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="popup('searchBoxPopup')">Open Popup</div>
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="dispose('SearchBox')">Dispose</div>
-                </div>
-            </div>
+            <!--  NUMERIC BOX -->
 
-            <div class="ui modal" id="searchBoxPopup">
-                <div class="header">SearchBox Position Test</div>
-                <div class="content">
-                    Some content...
-                    <div class="ui form">
-                        <label for="searchBox5">Another SearchBox</label>
-                        <div class="field">
-                            <input type="text" id="searchBox5">
-                        </div>
-                        <div class="field">
-                            <button class="ui button">Close</button>
+            <div class="uk-background-muted uk-padding" id="numericBox">
+
+
+                <div class="uk-form stacked">
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Integer</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="nb_integer" placeholder="Only integer numbers allowed..."
+                                data-sample="NumericBox">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ui piled segment" data-sample="MaskEdit" style="display: none">
-
-            <div class="ui form">
-                <div class="four wide field">
-                    <label for="maskEdit1">Brazilian Cellphone</label>
-                    <input type="text" id="maskEdit1">
-                </div>
-                <div class="four wide field">
-                    <label for="maskEdit2">Carplate (allow partial)</label>
-                    <input type="text" id="maskEdit2">
-                </div>
-                <div class="four wide field">
-                    <label for="maskEdit3">DateTime</label>
-                    <input type="text" id="maskEdit3">
-                </div>
-                <div class="four wide field">
-                    <label for="maskEdit4">Custom Translation</label>
-                    <input type="text" id="maskEdit4">
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="dispose('MaskEdit')">Dispose</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="ui piled segment" data-sample="Limiter" style="display: none">
-            <div class="ui form">
-                <div class="field">
-                    <label for="limiter1">Default Settings</label>
-                    <input type="text" id="limiter1" maxlength="50">
-                </div>
-                <div class="field">
-                    <label for="limiter2">Complete Info</label>
-                    <textarea cols="30" id="limiter2" rows="4" maxlength="200"></textarea>
-                </div>
-                <div class="field">
-                    <label for="limiter3">More Stylish</label>
-                    <textarea cols="30" id="limiter3" rows="4" maxlength="200"></textarea>
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="popup('limiterPopup')">Open Popup</div>
-                </div>
-                <div class="field">
-                    <div class="ui button" onclick="dispose('Limiter')">Dispose</div>
-                </div>
-            </div>
-
-            <div class="ui modal" id="limiterPopup">
-                <div class="header">Limiter Position Test</div>
-                <div class="content">
-                    Some content...
-                    <div class="ui form">
-                        <label for="searchBox5">Another Limiter</label>
-                        <div class="field">
-                            <input type="text" id="limiter4" maxlength="50">
-                        </div>
-                        <div class="field">
-                            <button class="ui button">Close</button>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Currency</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="nb_currency" placeholder="Currency values..."
+                                data-sample="NumericBox">
                         </div>
                     </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Custom</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="nb_custom" placeholder="Min: -100, max: 200, custom format..."
+                                data-sample="NumericBox">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-primary" onclick="dispose('NumericBox')">Dispose</button>
+                    </div>
                 </div>
+
+
             </div>
+
+
+            <!--  SEARCH BOX -->
+
+            <div class="uk-background-muted uk-padding" id="searchBox">
+
+
+                <div class="uk-form stacked">
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Static Data / RAW</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="sb_static_raw" placeholder="Simple string array..."
+                                data-sample="SearchBox">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Static Data / JSON</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="sb_static_json" placeholder="Simple json array..."
+                                data-sample="SearchBox">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label"> URL
+                            <span uk-spinner="ratio: 0.5" id="sb_url_spinner" style="display: none"></span>
+                        </label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="sb_url" placeholder="Search for countries..."
+                                data-sample="SearchBox">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label"> URL / Custom handler (axios.js)
+                            <span uk-spinner="ratio: 0.5" id="sb_url_custom_spinner" style="display: none"></span>
+                        </label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="sb_url_custom" placeholder="Search for users..."
+                                data-sample="SearchBox">
+                            <br />
+                            <small><em id="sb_url_custom_user_info"></em></small>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+
+                        <!-- This is a button toggling the modal -->
+                        <button uk-toggle="target: #modal_search_box" type="button" class="uk-button">Open Modal</button>
+
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-primary" onclick="dispose('SearchBox')">Dispose</button>
+                    </div>
+                </div>
+
+                <!-- This is the modal -->
+                <div id="modal_search_box" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <h2 class="uk-modal-title">Position Test</h2>
+                        <p>Some content...</p>
+                        <p>Some content...</p>
+                        <p>Some content...</p>
+                        <div class="uk-margin">
+                            <input type="text" class="uk-input" id="sb_modal" placeholder="Animals..." data-sample="SearchBox">
+                        </div>
+                        <button class="uk-modal-close uk-button" type="button">Close</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--  MASK EDIT -->
+
+            <div class="uk-background-muted uk-padding" id="maskEdit">
+
+
+                <div class="uk-form stacked">
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Brazilian Cellphone</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="me_cellphone" data-sample="MaskEdit">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Carplate / Allow Partial</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="me_carplate" data-sample="MaskEdit">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">DateTime</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="me_datetime" data-sample="MaskEdit">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Custom Translation</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="me_custom" data-sample="MaskEdit">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-primary" onclick="dispose('MaskEdit')">Dispose</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--  LIMITER -->
+
+            <div class="uk-background-muted uk-padding" id="limiter">
+
+                <div class="uk-form stacked">
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Default Settings</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-input" id="li_default" maxlength="50" data-sample="Limiter">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Complete Settings</label>
+                        <div class="uk-form-controls">
+                            <textarea cols="30" class="uk-textarea" id="li_complete" rows="4" maxlength="200"
+                                data-sample="Limiter"></textarea>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">More Stylish</label>
+                        <div class="uk-form-controls">
+                            <textarea cols="30" class="uk-textarea" id="li_stylish" rows="4" maxlength="200"
+                                data-sample="Limiter"></textarea>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+
+                        <!-- This is a button toggling the modal -->
+                        <button uk-toggle="target: #modal_limiter" type="button" class="uk-button">Open Modal</button>
+
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-primary" onclick="dispose('Limiter')">Dispose</button>
+                    </div>
+                </div>
+
+
+                <!-- This is the modal -->
+                <div id="modal_limiter" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <h2 class="uk-modal-title">Position Test</h2>
+                        <p>Some content...</p>
+                        <p>Some content...</p>
+                        <p>Some content...</p>
+                        <div class="uk-margin">
+                            <input type="text" class="uk-input" id="li_modal" maxlength="30" data-sample="Limiter">
+                        </div>
+                        <button class="uk-modal-close uk-button" type="button">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
-    <script src="duna.js"></script>
-    <script src="axios.min.js"></script>
-    <script src="vanilla.js"></script>
+    <script type="text/javascript" src="duna.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/transition.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/dimmer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/modal.min.js"></script>
-
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/js/uikit-icons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </body>
 
 </html>
