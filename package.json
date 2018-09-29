@@ -1,6 +1,6 @@
 {
   "name": "dunajs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple set of javascript controls",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "prod": "npm run cls && rollup --config scripts/config.js --environment BUILD:production",
     "build": "rollup --config scripts/config.js",
     "serve": "node server",
-    "link": "cp -rf package.json -t dist && cd dist && rm duna.* && npm link",
-    "dist": "cp -rf package.json README.md -t dist && cd dist && rm duna.* && npm publish"
+    "link": "cp -rf package.json -t dist && cd dist && npm link",
+    "dist": "cp -rf package.json README.md -t dist && cd dist && npm publish"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,12 @@
 
 The notable changes on this project will be documented here.
 
+
+## 1.1.1 (2018-09-28)
+
+### Changed
+- A few tweaks in the build process and the TypeScript's configuration
+
 ## 1.1.0 (2018-09-22)
 
 Changes to the build process.

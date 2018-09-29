@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6", "dom"
+    ],
+    "downlevelIteration": true,
     "strict": true
   }
 }
