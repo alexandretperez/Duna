@@ -1,7 +1,11 @@
 # Changelog <!-- markdownlint-disable MD024 -->
 
-The notable changes on this project will be documented here.
+Changes on this project will be documented here.
 
+## 1.1.2 (2018-09-28)
+
+### Changed
+- Main file name fixed.
 
 ## 1.1.1 (2018-09-28)
 
