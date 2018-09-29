@@ -2,10 +2,15 @@
 
 Changes on this project will be documented here.
 
+## 1.1.3 (2018-09-29)
+
+### Changed
+- package.json update.
+
 ## 1.1.2 (2018-09-28)
 
 ### Changed
-- Main file name fixed.
+- package.json update.
 
 ## 1.1.1 (2018-09-28)
 

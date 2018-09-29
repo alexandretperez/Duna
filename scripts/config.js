@@ -15,10 +15,14 @@ const config = [{
 }];
 
 ['index', 'utils', 'dom', 'http', 'ui/NumericBox', 'ui/Limiter', 'ui/MaskEdit', 'ui/SearchBox'].forEach(mod => {
+    let target = mod;
+    if (mod === 'index')
+        target = 'duna.esm';
+
     config.push({
         input: `./src/${mod}.ts`,
         output: {
-            file: `./dist/${mod}.js`,
+            file: `./dist/${target}.js`,
             format: 'cjs',
             sourcemap: process.env.BUILD === 'production' || 'inline'
         }
