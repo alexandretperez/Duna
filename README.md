@@ -40,7 +40,7 @@ In-browser usage:
 On NPM:
 
 ```javascript
-import * as duna from 'dunajs';
+import duna from 'dunajs';
 
 // e.g. using the css selector
 duna.ui.Limiter.from("[maxlength]", { ... })
@@ -49,7 +49,7 @@ duna.ui.Limiter.from("[maxlength]", { ... })
 It's also possible to load only what do you need:
 
 ```javascript
-import SearchBox from 'dunajs/ui/SearchBox';
+import { SearchBox } from 'dunajs/ui/SearchBox';
 
 new SearchBox(element, options);
 ```
@@ -69,10 +69,10 @@ npm run dev
 
 Currently there are four available controls in the library.
 
-- NumericBox
-- SearchBox
-- MaskEdit
-- Limiter
+-   NumericBox
+-   SearchBox
+-   MaskEdit
+-   Limiter
 
 ## Documentation
 

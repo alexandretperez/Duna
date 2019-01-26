@@ -1,6 +1,6 @@
 import * as utils from '../utils';
 import * as dom from '../dom';
-import ControlBase, { ControlOptions } from './ControlBase';
+import { ControlBase, ControlOptions } from './ControlBase';
 import { CallbackArgs, ElementDimension } from '../base';
 
 export interface LimiterOptions extends ControlOptions {
@@ -18,12 +18,12 @@ export interface LimiterOptions extends ControlOptions {
     onChange?: CallbackArgs<Limiter, { tooltip: HTMLElement }>;
 }
 
-type ElementPositionCalculation = {
+export type ElementPositionCalculation = {
     x: (rect: ClientRect, size: ElementDimension) => number;
     y: (rect: ClientRect, size: ElementDimension) => number;
-}
+};
 
-class Limiter extends ControlBase {
+export class Limiter extends ControlBase {
     _position!: ElementPositionCalculation;
     _templateContent!: string;
     _tooltip!: HTMLElement | null;
@@ -34,14 +34,14 @@ class Limiter extends ControlBase {
 
     constructor(element: HTMLInputElement | HTMLTextAreaElement, options: LimiterOptions) {
         let defaultOptions = {
-            position: "right bottom",
-            template: "<small><em>${len} / ${max}</em></small>",
+            position: 'right bottom',
+            template: '<small><em>${len} / ${max}</em></small>',
             timeout: 1.5,
             offsetX: 0,
             offsetY: 0,
             preserve: false,
             showOnFocus: false
-        }
+        };
 
         super(element, utils.merge(defaultOptions, options));
     }
@@ -54,21 +54,18 @@ class Limiter extends ControlBase {
     }
 
     dispose() {
-        if (this._tooltip)
-            this._destroy();
+        if (this._tooltip) this._destroy();
 
-        window.removeEventListener("scroll", this._onWindowScrollOrResize, false);
+        window.removeEventListener('scroll', this._onWindowScrollOrResize, false);
         super.dispose();
     }
 
     private _setRoot() {
-        if (this.$options.root)
-            this._root = document.querySelector(this.$options.root);
+        if (this.$options.root) this._root = document.querySelector(this.$options.root);
     }
 
     private _destroy() {
-        if (this._tooltip && this._tooltip.parentNode)
-            this._tooltip.parentNode.removeChild(this._tooltip);
+        if (this._tooltip && this._tooltip.parentNode) this._tooltip.parentNode.removeChild(this._tooltip);
 
         this._tooltip = null;
     }
@@ -77,43 +74,40 @@ class Limiter extends ControlBase {
         let visible = this._tooltip && dom.isVisible(this._tooltip);
 
         if (!this._tooltip) {
-            this.$element.insertAdjacentHTML("afterend", this.$options.template as string);
+            this.$element.insertAdjacentHTML('afterend', this.$options.template as string);
             this._tooltip = this.$element.nextElementSibling as HTMLElement;
             this._templateContent = this._tooltip.innerHTML;
-            this._tooltip.style.position = "fixed";
+            this._tooltip.style.position = 'fixed';
             let rect = this.$element.getBoundingClientRect();
             this._tooltip.style.left = rect.left + 'px'; // set initial position
             this.$invoke(this.$options.onCreate, this, { tooltip: this._tooltip });
-            this._tooltip.style.display = "none";
+            this._tooltip.style.display = 'none';
         }
 
         if (!visible) {
-            if (onFocus && !this.$options.showOnFocus)
-                return this._tooltip;
+            if (onFocus && !this.$options.showOnFocus) return this._tooltip;
 
             this.$invoke(this.$options.onShow, this, { tooltip: this._tooltip });
-            this._tooltip.style.display = "";
+            this._tooltip.style.display = '';
         }
 
         return this._tooltip;
     }
 
     private _registerEvents() {
-        this.$addEvent("focus", this._onFocusEvent);
-        this.$addEvent("input", this._onInputEvent);
-        this.$addEvent("blur", this._onBlurEvent);
-        this.$addEvent("scroll", this._onWindowScrollOrResize, window);
-        this.$addEvent("resize", this._onWindowScrollOrResize, window);
+        this.$addEvent('focus', this._onFocusEvent);
+        this.$addEvent('input', this._onInputEvent);
+        this.$addEvent('blur', this._onBlurEvent);
+        this.$addEvent('scroll', this._onWindowScrollOrResize, window);
+        this.$addEvent('resize', this._onWindowScrollOrResize, window);
     }
 
     private _onWindowScrollOrResize() {
-        if (this._tooltip && dom.isVisible(this._tooltip))
-            this._updatePosition();
+        if (this._tooltip && dom.isVisible(this._tooltip)) this._updatePosition();
     }
 
     private _onFocusEvent(e: FocusEvent) {
-        if (!this.$options.showOnFocus)
-            return;
+        if (!this.$options.showOnFocus) return;
 
         this._onInputEvent();
     }
@@ -124,7 +118,7 @@ class Limiter extends ControlBase {
             len: this.$element.value.length,
             max: this.$element.maxLength,
             rem: 0
-        }
+        };
 
         data.rem = data.max - data.len;
         tooltip.innerHTML = utils.template(this._templateContent, data);
@@ -135,13 +129,10 @@ class Limiter extends ControlBase {
     }
 
     private _onBlurEvent() {
-        if (!this._tooltip || this._tooltip.style.display === "none")
-            return;
+        if (!this._tooltip || this._tooltip.style.display === 'none') return;
 
-        if (!this.$options.preserve)
-            this._destroy.call(this);
-        else
-            this._tooltip.style.display = "none";
+        if (!this.$options.preserve) this._destroy.call(this);
+        else this._tooltip.style.display = 'none';
 
         this.$invoke(this.$options.onHide, this, { tooltip: this._tooltip });
     }
@@ -177,22 +168,20 @@ class Limiter extends ControlBase {
             right: (rect, size) => rect.right - size.width,
             top: (rect, size) => rect.top - size.height,
             bottom: (rect, size) => rect.bottom
-        }
+        };
 
         let position = this.$options.position as string;
         this._position = {} as ElementPositionCalculation;
         let matches = position.match(/(^| )(left|right)( |$)/);
-        if (matches)
-            this._position.x = pattern[matches[2]];
+        if (matches) this._position.x = pattern[matches[2]];
 
         matches = position.match(/(^| )(top|bottom)( |$)/);
-        if (matches)
-            this._position.y = pattern[matches[2]];
+        if (matches) this._position.y = pattern[matches[2]];
     }
 
     static from(selector: string, options: LimiterOptions): Limiter[] {
-        return [...document.querySelectorAll(selector)].map(element => new Limiter(<HTMLInputElement | HTMLTextAreaElement>element, options));
+        return [...document.querySelectorAll(selector)].map(
+            element => new Limiter(<HTMLInputElement | HTMLTextAreaElement>element, options)
+        );
     }
 }
-
-export default Limiter;

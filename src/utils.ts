@@ -8,7 +8,9 @@ export function merge(target: any, ...sources: any[]): any {
                     target[p] = target[p] || {};
                     merge(target[p], source[p]);
                 } else {
-                    target[p] = source[p];
+                    target[p] = Array.isArray(source[p]) 
+                        ? source[p].slice(0) 
+                        : source[p];
                 }
             }
         }

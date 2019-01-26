@@ -1,11 +1,11 @@
 import * as utils from '../utils';
-import ControlBase, { ControlOptions } from './ControlBase';
+import { ControlBase, ControlOptions } from './ControlBase';
 import { CaretPosition, CallbackArgs } from '../base';
 
 type MaskEditTranslation = {
     test: RegExp | { (value: string): boolean };
     transform?: (value: string) => string;
-}
+};
 
 export interface MaskEditOptions extends ControlOptions {
     format: string;
@@ -13,14 +13,14 @@ export interface MaskEditOptions extends ControlOptions {
     allowPartial?: boolean;
     shifter?: string;
     translation?: { [key: string]: MaskEditTranslation };
-    onUpdate?: CallbackArgs<MaskEdit, { value: string, rawValue: string }>;
+    onUpdate?: CallbackArgs<MaskEdit, { value: string; rawValue: string }>;
 }
 
-class MaskEdit extends ControlBase {
+export class MaskEdit extends ControlBase {
     _maskWithShifter!: string;
     _originalMaxLength!: number;
     _currentFormat!: string;
-    _translations!: { [key: string]: { test: (value: string) => boolean, transform?: (value: string) => string } };
+    _translations!: { [key: string]: { test: (value: string) => boolean; transform?: (value: string) => string } };
     _formats!: string[];
 
     $element!: HTMLInputElement;
@@ -28,16 +28,16 @@ class MaskEdit extends ControlBase {
 
     constructor(element: HTMLInputElement, options: MaskEditOptions) {
         let defaultOptions: MaskEditOptions = {
-            format: "",
-            placeholder: "",
+            format: '',
+            placeholder: '',
             allowPartial: false,
             shifter: '_',
             translation: {
                 '9': { test: /[0-9]/ },
-                'a': { test: /[A-Za-z]/ },
-                'A': { test: /[A-Za-z]/, transform: n => n.toUpperCase() }
+                a: { test: /[A-Za-z]/ },
+                A: { test: /[A-Za-z]/, transform: n => n.toUpperCase() }
             }
-        }
+        };
 
         super(element, utils.merge(defaultOptions, options));
     }
@@ -47,13 +47,10 @@ class MaskEdit extends ControlBase {
         let buffer = [];
         for (let i = 0, j = 0; i < this._currentFormat.length; i++) {
             let result = this._applyMask(i, j, value);
-            if (result.arg !== undefined)
-                buffer.push(result.value);
+            if (result.arg !== undefined) buffer.push(result.value);
 
-            if (result.ok)
-                j++;
-            else if (!result.keepRunning || value[j] === undefined)
-                break;
+            if (result.ok) j++;
+            else if (!result.keepRunning || value[j] === undefined) break;
         }
 
         this._setValue(buffer.join(''));
@@ -63,8 +60,7 @@ class MaskEdit extends ControlBase {
         let buffer = [];
         let value = this.$element.value;
         for (let i = 0; i < value.length; i++) {
-            if (this._hasTranslation(i) && value[i] !== this.$options.shifter)
-                buffer.push(value[i]);
+            if (this._hasTranslation(i) && value[i] !== this.$options.shifter) buffer.push(value[i]);
         }
         return buffer.join('');
     }
@@ -75,10 +71,8 @@ class MaskEdit extends ControlBase {
     }
 
     dispose() {
-        if (this._originalMaxLength === -1)
-            this.$element.removeAttribute("maxlength");
-        else
-            this.$element.maxLength = this._originalMaxLength;
+        if (this._originalMaxLength === -1) this.$element.removeAttribute('maxlength');
+        else this.$element.maxLength = this._originalMaxLength;
 
         super.dispose();
     }
@@ -113,10 +107,8 @@ class MaskEdit extends ControlBase {
             value: ''
         };
 
-        if (result.ok)
-            result.value = (t && t.transform ? t.transform : (arg: string) => arg)(v || '');
-        else
-            result.value = t ? '' : f;
+        if (result.ok) result.value = (t && t.transform ? t.transform : (arg: string) => arg)(v || '');
+        else result.value = t ? '' : f;
 
         return result;
     }
@@ -142,8 +134,7 @@ class MaskEdit extends ControlBase {
                 break;
             }
 
-            if (!result.keepRunning || buffer[i] === undefined)
-                break;
+            if (!result.keepRunning || buffer[i] === undefined) break;
         }
 
         this._setValue(buffer.join(''));
@@ -156,19 +147,15 @@ class MaskEdit extends ControlBase {
     }
 
     private _defineFormat(initialization: boolean) {
-        if (initialization)
-            this._currentFormat = this._formats[0];
+        if (initialization) this._currentFormat = this._formats[0];
 
-        if (!this._originalMaxLength)
-            this._originalMaxLength = this.$element.maxLength;
+        if (!this._originalMaxLength) this._originalMaxLength = this.$element.maxLength;
 
         this.$element.maxLength = this._currentFormat.length;
     }
 
     private _configOptions() {
-        this._formats = utils.isString(this.$options.format)
-            ? [this.$options.format]
-            : [].concat(this.$options.format);
+        this._formats = utils.isString(this.$options.format) ? [this.$options.format] : [].concat(this.$options.format);
 
         this.$element.placeholder = this.$options.placeholder || this._formats[0];
     }
@@ -179,16 +166,16 @@ class MaskEdit extends ControlBase {
         for (let t in translation) {
             let testFn = translation[t].test;
             this._translations[t] = {
-                test: testFn instanceof RegExp ? (value) => (testFn as RegExp).test(value) : testFn,
+                test: testFn instanceof RegExp ? value => (testFn as RegExp).test(value) : testFn,
                 transform: translation[t].transform
-            }
+            };
         }
     }
 
     private _registerEvents() {
-        this.$addEvent("input", this._onInputEvent);
-        this.$addEvent("keydown", this._onKeyDownEvent);
-        this.$addEvent("blur", this._onBlurEvent);
+        this.$addEvent('input', this._onInputEvent);
+        this.$addEvent('keydown', this._onKeyDownEvent);
+        this.$addEvent('blur', this._onBlurEvent);
     }
 
     private _onBlurEvent() {
@@ -207,11 +194,9 @@ class MaskEdit extends ControlBase {
             return;
         }
 
-        if (value.length === this._currentFormat.length)
-            return;
+        if (value.length === this._currentFormat.length) return;
 
-        if (!this.$options.allowPartial)
-            this._setValue('');
+        if (!this.$options.allowPartial) this._setValue('');
     }
 
     private _onInputEvent() {
@@ -219,56 +204,47 @@ class MaskEdit extends ControlBase {
     }
 
     private _onKeyDownEvent(e: KeyboardEvent) {
-
-        if (/^[cvx]$/i.test(e.key) && e.ctrlKey)
-            return;
+        if (/^[cvx]$/i.test(e.key) && e.ctrlKey) return;
 
         let caret = this._getCaretPosition();
         if (e.key.length === 1) {
-            if (this.$element.value[caret.start])
-                this._replace(e);
+            if (this.$element.value[caret.start]) this._replace(e);
             return;
         }
 
-        if (e.key === "Backspace") {
+        if (e.key === 'Backspace') {
             this._backspaceHandler.call(this, e, caret);
             return;
         }
 
-        if (e.key === "Delete") {
+        if (e.key === 'Delete') {
             this._deleteHandler.call(this, e, caret);
             return;
         }
     }
 
     private _getMaskWithShifter(): string {
-        if (this._maskWithShifter)
-            return this._maskWithShifter;
+        if (this._maskWithShifter) return this._maskWithShifter;
 
         let buffer = this._currentFormat.split('');
         for (let i = 0; i < buffer.length; i++) {
-            if (this._hasTranslation(i))
-                buffer[i] = this.$options.shifter as string;
+            if (this._hasTranslation(i)) buffer[i] = this.$options.shifter as string;
         }
         return (this._maskWithShifter = buffer.join(''));
     }
 
     private _default(caret: CaretPosition): boolean {
-        if (!this.$element.value.length)
-            return true;
+        if (!this.$element.value.length) return true;
 
         if (!caret.areEquals) {
-            if (caret.start === 0 && caret.end === this.$element.value.length)
-                return true;
+            if (caret.start === 0 && caret.end === this.$element.value.length) return true;
         }
 
         return false;
     }
 
     private _deleteHandler(e: KeyboardEvent, caret: CaretPosition) {
-
-        if (this._default(caret))
-            return;
+        if (this._default(caret)) return;
 
         e.preventDefault();
 
@@ -278,14 +254,13 @@ class MaskEdit extends ControlBase {
 
         let buffer = this.$element.value.split('');
         let value = this._getMaskWithShifter().substring(caret.start, caret.end);
-        buffer.splice.apply(buffer, [caret.start, caret.end - caret.start].concat(value.split('') as any[]));
+        buffer.splice(caret.start, caret.end - caret.start, ...value.split(''));
         this._setValue(buffer.join(''));
         this._setCaretPosition(caret.start, caret.end);
     }
 
     private _backspaceHandler(e: KeyboardEvent, caret: CaretPosition) {
-        if (this._default(caret))
-            return;
+        if (this._default(caret)) return;
 
         e.preventDefault();
         if (caret.areEquals) {
@@ -299,13 +274,12 @@ class MaskEdit extends ControlBase {
             buffer.splice(caret.start);
         } else {
             let value = this._getMaskWithShifter().substring(caret.start, caret.end);
-            buffer.splice.apply(buffer, [caret.start, caret.end - caret.start].concat(value.split('') as any[]));
+            buffer.splice(caret.start, caret.end - caret.start, ...value.split(''));
         }
 
         this._setValue(buffer.join(''));
         this._setCaretPosition(caret.start);
     }
-
 
     private _setCaretPosition(start: number, end: number | undefined = undefined) {
         this.$element.selectionStart = start;
@@ -319,7 +293,7 @@ class MaskEdit extends ControlBase {
             start,
             end,
             areEquals: start === end
-        }
+        };
     }
 
     private _setValue(value: string) {
@@ -328,8 +302,8 @@ class MaskEdit extends ControlBase {
     }
 
     static from(selector: string, options: MaskEditOptions): MaskEdit[] {
-        return [...document.querySelectorAll(selector)].map(element => new MaskEdit(<HTMLInputElement>element, options));
+        return [...document.querySelectorAll(selector)].map(
+            element => new MaskEdit(<HTMLInputElement>element, options)
+        );
     }
 }
-
-export default MaskEdit;

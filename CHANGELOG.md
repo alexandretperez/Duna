@@ -2,20 +2,42 @@
 
 Changes on this project will be documented here.
 
+## 1.1.5 (2019-01-26)
+
+-   Default export was changed to named export in all ui controls.
+
+```javascript
+// version <= 1.1.4
+import NumericBox from 'dunajs/ui/NumericBox';
+
+// now
+import { NumericBox } from 'dunajs/ui/NumericBox';
+```
+
+## 1.1.4 (2019-01-26)
+
+### Changed
+
+-   Minor fixes.
+-   Typescript declaration files added.
+
 ## 1.1.3 (2018-09-29)
 
 ### Changed
-- package.json update.
+
+-   package.json update.
 
 ## 1.1.2 (2018-09-28)
 
 ### Changed
-- package.json update.
+
+-   package.json update.
 
 ## 1.1.1 (2018-09-28)
 
 ### Changed
-- A few tweaks in the build process and the TypeScript's configuration
+
+-   A few tweaks in the build process and the TypeScript's configuration
 
 ## 1.1.0 (2018-09-22)
 
@@ -25,8 +47,7 @@ The module paths was simplified to a more convenient way.
 
 ### Changed
 
-- Now the features are imported as '**dunajs/**...' instead of '**dunajs/lib/**...'.
-
+-   Now the features are imported as '**dunajs/**...' instead of '**dunajs/lib/**...'.
 
 ```javascript
 // version <= 1.0.3
@@ -38,41 +59,43 @@ import * as http from 'dunajs/http';
 import NumericBox from 'dunajs/ui/NumericBox';
 ```
 
-
 ## 1.0.3 (2018-09-01)
 
 ### Changed
-- Typescript was updated to most recent version.
+
+-   Typescript was updated to most recent version.
 
 ### Added
-- MaskEdit's now supports Ctrl+C, Ctrl+X and Ctrl+V.
 
-### Fixed 
-- SearchBox's bug when the search criteria has a escape char '\\'
+-   MaskEdit's now supports Ctrl+C, Ctrl+X and Ctrl+V.
+
+### Fixed
+
+-   SearchBox's bug when the search criteria has a escape char '\\'
 
 ## 1.0.2 (2017-11-27)
 
 ### Added
 
-- SearchBox and Limiter has now the "root" option. Read more on the Wiki pages.
+-   SearchBox and Limiter has now the "root" option. Read more on the Wiki pages.
 
 ## 1.0.1 (2017-11-15)
 
 ### Added
 
-- Added to the repository the compiled duna.js at "lib" folder.
+-   Added to the repository the compiled duna.js at "lib" folder.
 
 ### Fixed
 
-- SearchBox control not showing the correct results when the source is an a array of strings.
-- SearchBox.options.minLength was declared but not implemented.
+-   SearchBox control not showing the correct results when the source is an a array of strings.
+-   SearchBox.options.minLength was declared but not implemented.
 
 ### Changed
 
-- An error will be throw when SearchBox.options.source is not set.
-- SearchBox.options.onDataReady was removed due the onAfterRequest callback has the same purpose.
-- SearchBox.options.onBeforeRequest and onAfterRequest callbacks signature has changed.
-- MaskEdit.options.trim has no use and was removed.
+-   An error will be throw when SearchBox.options.source is not set.
+-   SearchBox.options.onDataReady was removed due the onAfterRequest callback has the same purpose.
+-   SearchBox.options.onBeforeRequest and onAfterRequest callbacks signature has changed.
+-   MaskEdit.options.trim has no use and was removed.
 
 ## 1.0.0 (2017-11-13)
 
