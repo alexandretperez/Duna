@@ -2,7 +2,7 @@
 
 Changes on this project will be documented here.
 
-## 1.1.5 (2019-01-26)
+## 1.1.6 (2019-01-26)
 
 -   Default export was changed to named export in all ui controls.
 
@@ -13,10 +13,6 @@ import NumericBox from 'dunajs/ui/NumericBox';
 // now
 import { NumericBox } from 'dunajs/ui/NumericBox';
 ```
-
-## 1.1.4 (2019-01-26)
-
-### Changed
 
 -   Minor fixes.
 -   Typescript declaration files added.

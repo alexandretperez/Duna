@@ -1,6 +1,6 @@
 {
     "name": "dunajs",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "A simple set of javascript controls",
     "main": "duna.js",
     "module": "duna.esm.js",
@@ -11,7 +11,7 @@
         "prod": "npm run cls && rollup --config scripts/config.js --environment BUILD:production",
         "build": "rollup --config scripts/config.js",
         "serve": "node server",
-        "copy": "cp -rf package.json README.md types/src/** -t dist",
+        "copy": "cp -rf package.json README.md types/** -t dist",
         "link": "npm run copy && cd dist && npm link",
         "dist": "npm run copy && cd dist && npm publish"
     },
